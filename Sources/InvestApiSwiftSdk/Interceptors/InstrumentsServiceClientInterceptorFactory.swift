@@ -1,7 +1,50 @@
 import GRPC
 
 internal struct InstrumentsServiceClientInterceptorFactory:
-        Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientInterceptorFactoryProtocol {
+    Tinkoff_Public_Invest_Api_Contract_V1_InstrumentsServiceClientInterceptorFactoryProtocol {
+    func makeGetBondEventsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetBondEventsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetBondEventsResponse>] {
+        return []
+    }
+    
+    func makeIndicativesInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_IndicativesRequest, Tinkoff_Public_Invest_Api_Contract_V1_IndicativesResponse>] {
+        return []
+    }
+    
+    func makeCreateFavoriteGroupInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_CreateFavoriteGroupRequest, Tinkoff_Public_Invest_Api_Contract_V1_CreateFavoriteGroupResponse>] {
+        return []
+    }
+    
+    func makeDeleteFavoriteGroupInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_DeleteFavoriteGroupRequest, Tinkoff_Public_Invest_Api_Contract_V1_DeleteFavoriteGroupResponse>] {
+        return []
+    }
+    
+    func makeGetFavoriteGroupsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetFavoriteGroupsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetFavoriteGroupsResponse>] {
+        return []
+    }
+    
+    func makeGetAssetFundamentalsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAssetFundamentalsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAssetFundamentalsResponse>] {
+        return []
+    }
+    
+    func makeGetAssetReportsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetAssetReportsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetAssetReportsResponse>] {
+        return []
+    }
+    
+    func makeGetConsensusForecastsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetConsensusForecastsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetConsensusForecastsResponse>] {
+        return []
+    }
+    
+    func makeGetForecastByInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetForecastRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetForecastResponse>] {
+        return []
+    }
+    
+    func makeGetRiskRatesInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_RiskRatesRequest, Tinkoff_Public_Invest_Api_Contract_V1_RiskRatesResponse>] {
+        return []
+    }
+    
+    func makeGetInsiderDealsInterceptors() -> [GRPC.ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_GetInsiderDealsRequest, Tinkoff_Public_Invest_Api_Contract_V1_GetInsiderDealsResponse>] {
+        return []
+    }
     
     func makeOptionsByInterceptors() ->
         [ClientInterceptor<Tinkoff_Public_Invest_Api_Contract_V1_FilterOptionsRequest,

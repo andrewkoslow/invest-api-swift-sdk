@@ -11,4 +11,7 @@ public enum RealExchange: Int, Codable {
     
     /// Внебиржевой инструмент.
     case otc
+    
+    ///Инструмент, торгуемый на площадке брокера.
+    case dealer
 }

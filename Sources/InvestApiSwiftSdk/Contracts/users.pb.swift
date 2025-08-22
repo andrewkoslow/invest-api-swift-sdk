@@ -20,21 +20,24 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-///Тип счёта.
+///Тип счeта.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountType: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  ///Тип аккаунта не определён.
+  ///Тип аккаунта не определeн.
   case unspecified // = 0
 
-  ///Брокерский счёт Тинькофф.
+  ///Брокерский счeт Т-Инвестиций.
   case tinkoff // = 1
 
-  ///ИИС счёт.
+  ///ИИС.
   case tinkoffIis // = 2
 
   ///Инвесткопилка.
   case investBox // = 3
+
+  ///Фонд денежного рынка.
+  case investFund // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -47,6 +50,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountType: SwiftProtobuf.Enu
     case 1: self = .tinkoff
     case 2: self = .tinkoffIis
     case 3: self = .investBox
+    case 4: self = .investFund
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -57,6 +61,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountType: SwiftProtobuf.Enu
     case .tinkoff: return 1
     case .tinkoffIis: return 2
     case .investBox: return 3
+    case .investFund: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -72,26 +77,30 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AccountType: CaseIterable {
     .tinkoff,
     .tinkoffIis,
     .investBox,
+    .investFund,
   ]
 }
 
 #endif  // swift(>=4.2)
 
-///Статус счёта.
+///Статус счeта.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  ///Статус счёта не определён.
+  ///Статус счeта не определeн.
   case unspecified // = 0
 
   ///Новый, в процессе открытия.
   case new // = 1
 
-  ///Открытый и активный счёт.
+  ///Открытый и активный счeт.
   case `open` // = 2
 
-  ///Закрытый счёт.
+  ///Закрытый счeт.
   case closed // = 3
+
+  ///Все счета.
+  case all // = 4
   case UNRECOGNIZED(Int)
 
   public init() {
@@ -104,6 +113,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: SwiftProtobuf.E
     case 1: self = .new
     case 2: self = .open
     case 3: self = .closed
+    case 4: self = .all
     default: self = .UNRECOGNIZED(rawValue)
     }
   }
@@ -114,6 +124,7 @@ public enum Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: SwiftProtobuf.E
     case .new: return 1
     case .open: return 2
     case .closed: return 3
+    case .all: return 4
     case .UNRECOGNIZED(let i): return i
     }
   }
@@ -129,25 +140,26 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: CaseIterable {
     .new,
     .open,
     .closed,
+    .all,
   ]
 }
 
 #endif  // swift(>=4.2)
 
-///Уровень доступа к счёту.
+///Уровень доступа к счeту.
 public enum Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel: SwiftProtobuf.Enum {
   public typealias RawValue = Int
 
-  ///Уровень доступа не определён.
+  ///Уровень доступа не определeн.
   case accountAccessLevelUnspecified // = 0
 
-  ///Полный доступ к счёту.
+  ///Полный доступ к счeту.
   case accountAccessLevelFullAccess // = 1
 
-  ///Доступ с уровнем прав "только чтение".
+  ///Доступ с уровнем прав «только чтение».
   case accountAccessLevelReadOnly // = 2
 
-  ///Доступ отсутствует.
+  ///Доступа нет.
   case accountAccessLevelNoAccess // = 3
   case UNRECOGNIZED(Int)
 
@@ -197,9 +209,21 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  ///Статус счета.
+  public var status: Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus {
+    get {return _status ?? .unspecified}
+    set {_status = newValue}
+  }
+  /// Returns true if `status` has been explicitly set.
+  public var hasStatus: Bool {return self._status != nil}
+  /// Clears the value of `status`. Subsequent reads from it will return its default value.
+  public mutating func clearStatus() {self._status = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
+
+  fileprivate var _status: Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus? = nil
 }
 
 ///Список счетов пользователя.
@@ -216,25 +240,25 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsResponse {
   public init() {}
 }
 
-///Информация о счёте.
+///Информация о счeте.
 public struct Tinkoff_Public_Invest_Api_Contract_V1_Account {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Идентификатор счёта.
+  /// Идентификатор счeта.
   public var id: String = String()
 
-  /// Тип счёта.
+  /// Тип счeта.
   public var type: Tinkoff_Public_Invest_Api_Contract_V1_AccountType = .unspecified
 
-  /// Название счёта.
+  /// Название счeта.
   public var name: String = String()
 
-  /// Статус счёта.
+  /// Статус счeта.
   public var status: Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus = .unspecified
 
-  /// Дата открытия счёта в часовом поясе UTC.
+  /// Дата открытия счeта в часовом поясе UTC.
   public var openedDate: SwiftProtobuf.Google_Protobuf_Timestamp {
     get {return _openedDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
     set {_openedDate = newValue}
@@ -244,7 +268,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Account {
   /// Clears the value of `openedDate`. Subsequent reads from it will return its default value.
   public mutating func clearOpenedDate() {self._openedDate = nil}
 
-  /// Дата закрытия счёта в часовом поясе UTC.
+  /// Дата закрытия счeта в часовом поясе UTC.
   public var closedDate: SwiftProtobuf.Google_Protobuf_Timestamp {
     get {return _closedDate ?? SwiftProtobuf.Google_Protobuf_Timestamp()}
     set {_closedDate = newValue}
@@ -254,7 +278,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Account {
   /// Clears the value of `closedDate`. Subsequent reads from it will return its default value.
   public mutating func clearClosedDate() {self._closedDate = nil}
 
-  /// Уровень доступа к текущему счёту (определяется токеном).
+  /// Уровень доступа к текущему счeту (определяется токеном).
   public var accessLevel: Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel = .accountAccessLevelUnspecified
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -265,13 +289,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_Account {
   fileprivate var _closedDate: SwiftProtobuf.Google_Protobuf_Timestamp? = nil
 }
 
-///Запрос маржинальных показателей по счёту
+///Запрос маржинальных показателей по счeту.
 public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Идентификатор счёта пользователя.
+  /// Идентификатор счeта пользователя.
   public var accountID: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -279,13 +303,13 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesRequest {
   public init() {}
 }
 
-///Маржинальные показатели по счёту.
+///Маржинальные показатели по счeту.
 public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  /// Ликвидная стоимость портфеля. Подробнее: [что такое ликвидный портфель?](https://help.tinkoff.ru/margin-trade/short/liquid-portfolio/).
+  /// Ликвидная стоимость портфеля. [Подробнее про ликвидный портфель](https://www.tbank.ru/invest/help/brokerage/account/margin/about/#q4).
   public var liquidPortfolio: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
     get {return _storage._liquidPortfolio ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
     set {_uniqueStorage()._liquidPortfolio = newValue}
@@ -295,7 +319,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse 
   /// Clears the value of `liquidPortfolio`. Subsequent reads from it will return its default value.
   public mutating func clearLiquidPortfolio() {_uniqueStorage()._liquidPortfolio = nil}
 
-  /// Начальная маржа — начальное обеспечение для совершения новой сделки. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/).
+  /// Начальная маржа — начальное обеспечение для совершения новой сделки. [Подробнее про начальную и минимальную маржу](https://www.tbank.ru/invest/help/brokerage/account/margin/about/#q6).
   public var startingMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
     get {return _storage._startingMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
     set {_uniqueStorage()._startingMargin = newValue}
@@ -305,7 +329,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse 
   /// Clears the value of `startingMargin`. Subsequent reads from it will return its default value.
   public mutating func clearStartingMargin() {_uniqueStorage()._startingMargin = nil}
 
-  /// Минимальная маржа — это минимальное обеспечение для поддержания позиции, которую вы уже открыли. Подробнее: [начальная и минимальная маржа](https://help.tinkoff.ru/margin-trade/short/initial-and-maintenance-margin/).
+  /// Минимальная маржа — это минимальное обеспечение для поддержания позиции, которую вы уже открыли. [Подробнее про начальную и минимальную маржу](https://www.tbank.ru/invest/help/brokerage/account/margin/about/#q6).
   public var minimalMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
     get {return _storage._minimalMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
     set {_uniqueStorage()._minimalMargin = newValue}
@@ -335,7 +359,7 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetMarginAttributesResponse 
   /// Clears the value of `amountOfMissingFunds`. Subsequent reads from it will return its default value.
   public mutating func clearAmountOfMissingFunds() {_uniqueStorage()._amountOfMissingFunds = nil}
 
-  /// Скорректированная маржа.Начальная маржа, в которой плановые позиции рассчитываются с учётом активных заявок на покупку позиций лонг или продажу позиций шорт.
+  /// Скорректированная маржа. Начальная маржа, в которой плановые позиции рассчитываются с учeтом активных заявок на покупку позиций лонг или продажу позиций шорт.
   public var correctedMargin: Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue {
     get {return _storage._correctedMargin ?? Tinkoff_Public_Invest_Api_Contract_V1_MoneyValue()}
     set {_uniqueStorage()._correctedMargin = newValue}
@@ -440,11 +464,17 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse {
   ///Признак квалифицированного инвестора.
   public var qualStatus: Bool = false
 
-  ///Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь. [Подробнее](https://tinkoff.github.io/investAPI/faq_users/).
+  ///Набор требующих тестирования инструментов и возможностей, с которыми может работать пользователь. [Подробнее](/invest/services/accounts/faq_users).
   public var qualifiedForWorkWith: [String] = []
 
   ///Наименование тарифа пользователя.
   public var tariff: String = String()
+
+  ///Идентификатор пользователя.
+  public var userID: String = String()
+
+  /// Категория риска.
+  public var riskLevelCode: String = String()
 
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -478,6 +508,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AccountType: SwiftProtobuf._Prot
     1: .same(proto: "ACCOUNT_TYPE_TINKOFF"),
     2: .same(proto: "ACCOUNT_TYPE_TINKOFF_IIS"),
     3: .same(proto: "ACCOUNT_TYPE_INVEST_BOX"),
+    4: .same(proto: "ACCOUNT_TYPE_INVEST_FUND"),
   ]
 }
 
@@ -487,6 +518,7 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AccountStatus: SwiftProtobuf._Pr
     1: .same(proto: "ACCOUNT_STATUS_NEW"),
     2: .same(proto: "ACCOUNT_STATUS_OPEN"),
     3: .same(proto: "ACCOUNT_STATUS_CLOSED"),
+    4: .same(proto: "ACCOUNT_STATUS_ALL"),
   ]
 }
 
@@ -501,18 +533,35 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_AccessLevel: SwiftProtobuf._Prot
 
 extension Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GetAccountsRequest"
-  public static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "status"),
+  ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularEnumField(value: &self._status) }()
+      default: break
+      }
     }
   }
 
   public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._status {
+      try visitor.visitSingularEnumField(value: v, fieldNumber: 1)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
   public static func ==(lhs: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest, rhs: Tinkoff_Public_Invest_Api_Contract_V1_GetAccountsRequest) -> Bool {
+    if lhs._status != rhs._status {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -927,6 +976,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse: SwiftProtobuf.M
     2: .standard(proto: "qual_status"),
     3: .standard(proto: "qualified_for_work_with"),
     4: .same(proto: "tariff"),
+    9: .standard(proto: "user_id"),
+    12: .standard(proto: "risk_level_code"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -939,6 +990,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse: SwiftProtobuf.M
       case 2: try { try decoder.decodeSingularBoolField(value: &self.qualStatus) }()
       case 3: try { try decoder.decodeRepeatedStringField(value: &self.qualifiedForWorkWith) }()
       case 4: try { try decoder.decodeSingularStringField(value: &self.tariff) }()
+      case 9: try { try decoder.decodeSingularStringField(value: &self.userID) }()
+      case 12: try { try decoder.decodeSingularStringField(value: &self.riskLevelCode) }()
       default: break
       }
     }
@@ -957,6 +1010,12 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse: SwiftProtobuf.M
     if !self.tariff.isEmpty {
       try visitor.visitSingularStringField(value: self.tariff, fieldNumber: 4)
     }
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 9)
+    }
+    if !self.riskLevelCode.isEmpty {
+      try visitor.visitSingularStringField(value: self.riskLevelCode, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -965,6 +1024,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_GetInfoResponse: SwiftProtobuf.M
     if lhs.qualStatus != rhs.qualStatus {return false}
     if lhs.qualifiedForWorkWith != rhs.qualifiedForWorkWith {return false}
     if lhs.tariff != rhs.tariff {return false}
+    if lhs.userID != rhs.userID {return false}
+    if lhs.riskLevelCode != rhs.riskLevelCode {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

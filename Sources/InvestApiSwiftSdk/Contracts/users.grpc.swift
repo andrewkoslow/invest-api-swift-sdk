@@ -11,8 +11,8 @@ import NIOConcurrencyHelpers
 import SwiftProtobuf
 
 
-///Сервис предназначен для получения: </br> **1**.
-///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
+///С помощью сервиса можно получить: <br/> 1.
+///список счетов пользователя; <br/> 2. маржинальные показатели по счeту.
 ///
 /// Usage: instantiate `Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClient`, then call methods of this protocol to make API calls.
 public protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol: GRPCClient {
@@ -45,7 +45,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
     return "tinkoff.public.invest.api.contract.v1.UsersService"
   }
 
-  ///Метод получения счетов пользователя.
+  ///GetAccounts — счета пользователя
+  ///Получить список счетов.
   ///
   /// - Parameters:
   ///   - request: Request to send to GetAccounts.
@@ -63,7 +64,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
     )
   }
 
-  ///Расчёт маржинальных показателей по счёту.
+  ///GetMarginAttributes — маржинальные показатели по счeту
+  ///Метод позволяет получить маржинальные показатели и ликвидность по заданному счeту.
   ///
   /// - Parameters:
   ///   - request: Request to send to GetMarginAttributes.
@@ -81,7 +83,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
     )
   }
 
-  ///Запрос тарифа пользователя.
+  ///GetUserTariff — тариф пользователя
+  ///Получить информацию о текущих лимитах на подклчение, согласно текущему тарифу пользователя.
   ///
   /// - Parameters:
   ///   - request: Request to send to GetUserTariff.
@@ -99,7 +102,8 @@ extension Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceClientProtocol {
     )
   }
 
-  ///Метод получения информации о пользователе.
+  ///GetInfo — информация о пользователе
+  ///Получить информацию о пользователе: тариф, признак квалификации, пройденные тесты и др.
   ///
   /// - Parameters:
   ///   - request: Request to send to GetInfo.
@@ -175,8 +179,8 @@ public struct Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceNIOClient: Tinko
   }
 }
 
-///Сервис предназначен для получения: </br> **1**.
-///списка счетов пользователя; </br> **2**. маржинальных показателей по счёту.
+///С помощью сервиса можно получить: <br/> 1.
+///список счетов пользователя; <br/> 2. маржинальные показатели по счeту.
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 public protocol Tinkoff_Public_Invest_Api_Contract_V1_UsersServiceAsyncClientProtocol: GRPCClient {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
